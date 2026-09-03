@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aubrey Ocampo · Video Editor & VA</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #FF8A9D;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #FFC0CB;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== NEUMORPHISM CONTAINER ===== */
+        .container {
+            max-width: 1150px;
+            width: 100%;
+            margin: 0 auto;
+            background: #FFE6EA;
+            border-radius: 3rem;
+            padding: 2.8rem 3rem;
+            box-shadow: 
+                12px 12px 24px rgba(180, 140, 155, 0.25),
+                -12px -12px 24px rgba(255, 138, 157);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 230, 234);
+        }
+
+        /* ===== HEADER ===== */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(180, 140, 155, 0.15);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b34a6e, #d47a9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 500;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a2e3b;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.3rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #c45a7a;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d47a9a;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== PROFILE ===== */
+        .profile {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2.8rem;
+            margin-bottom: 3rem;
+            padding: 0.5rem 0;
+        }
+
+        .profile-avatar {
+            flex-shrink: 0;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f0e8ed;
+            box-shadow: 
+                8px 8px 16px rgba(180, 140, 155, 0.2),
+                -8px -8px 16px rgba(255, 245, 250, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(255, 245, 250, 0.6);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-avatar i {
+            font-size: 4rem;
+            color: #b34a6e;
+        }
+
+        .profile-info h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #2d1b26;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .profile-info .tagline {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #b34a6e;
+            margin-bottom: 0.4rem;
+        }
+
+        .profile-info .bio {
+            max-width: 550px;
+            color: #4a2e3b;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 0.4rem;
+        }
+
+        .social-icons a {
+            color: #4a2e3b;
+            font-size: 1.4rem;
+            transition: all 0.3s;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0e8ed;
+            box-shadow: 
+                4px 4px 8px rgba(180, 140, 155, 0.15),
+                -4px -4px 8px rgba(255, 245, 250, 0.8);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #c45a7a;
+            transform: translateY(-3px);
+            box-shadow: 
+                6px 6px 12px rgba(180, 140, 155, 0.2),
+                -6px -6px 12px rgba(255, 245, 250, 0.9);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+        }
+
+        /* ===== NEUMORPHISM BUTTONS ===== */
+        .btn-neumorph {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            background: #f0e8ed;
+            color: #4a2e3b;
+            box-shadow: 
+                6px 6px 12px rgba(180, 140, 155, 0.2),
+                -6px -6px 12px rgba(255, 245, 250, 0.8);
+        }
+
+        .btn-neumorph:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                8px 8px 16px rgba(180, 140, 155, 0.25),
+                -8px -8px 16px rgba(255, 245, 250, 0.9);
+        }
+
+        .btn-neumorph.primary {
+            background: linear-gradient(135deg, #d47a9a, #b34a6e);
+            color: white;
+            box-shadow: 
+                6px 6px 12px rgba(180, 140, 155, 0.25),
+                -6px -6px 12px rgba(255, 245, 250, 0.6);
+        }
+
+        .btn-neumorph.primary:hover {
+            box-shadow: 
+                8px 8px 16px rgba(180, 140, 155, 0.3),
+                -8px -8px 16px rgba(255, 245, 250, 0.7);
+            transform: translateY(-3px);
+        }
+
+        .btn-neumorph.secondary {
+            background: transparent;
+            border: 2px solid #d47a9a;
+            color: #b34a6e;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem 0;
+            letter-spacing: -0.01em;
+            padding-left: 1.2rem;
+            border-left: 5px solid #d47a9a;
+            color: #2d1b26;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== NEUMORPHISM CARDS ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .card {
+            background: #f0e8ed;
+            border-radius: 2rem;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 
+                6px 6px 14px rgba(180, 140, 155, 0.15),
+                -6px -6px 14px rgba(255, 245, 250, 0.8);
+            border: 1px solid rgba(255, 245, 250, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 
+                10px 10px 20px rgba(180, 140, 155, 0.2),
+                -10px -10px 20px rgba(255, 245, 250, 0.9);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #2d1b26;
+        }
+
+        .card .meta {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #8a5e70;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #4a2e3b;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        .card i {
+            color: #c45a7a;
+            width: 1.8rem;
+            font-size: 1.1rem;
+        }
+
+        /* ===== PROJECT SHOWCASE ===== */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .project-card {
+            background: #f0e8ed;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 
+                6px 6px 14px rgba(180, 140, 155, 0.15),
+                -6px -6px 14px rgba(255, 245, 250, 0.8);
+            border: 1px solid rgba(255, 245, 250, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #4a2e3b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 
+                10px 10px 20px rgba(180, 140, 155, 0.2),
+                -10px -10px 20px rgba(255, 245, 250, 0.9);
+            color: #b34a6e;
+        }
+
+        .project-card .project-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f0e8ed, #e8dce3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #b34a6e;
+            box-shadow: 
+                4px 4px 10px rgba(180, 140, 155, 0.15),
+                -4px -4px 10px rgba(255, 245, 250, 0.7);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .project-icon {
+            background: linear-gradient(135deg, #d47a9a, #b34a6e);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .project-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2d1b26;
+        }
+
+        .project-card p {
+            font-size: 0.85rem;
+            color: #8a5e70;
+            margin: 0;
+        }
+
+        .project-card .arrow-link {
+            font-size: 1.2rem;
+            color: #d47a9a;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .arrow-link {
+            transform: translateX(5px);
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-chip {
+            background: #f0e8ed;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #4a2e3b;
+            transition: all 0.3s;
+            box-shadow: 
+                3px 3px 8px rgba(180, 140, 155, 0.12),
+                -3px -3px 8px rgba(255, 245, 250, 0.7);
+            border: 1px solid rgba(255, 245, 250, 0.3);
+        }
+
+        .skill-chip:hover {
+            transform: translateY(-2px);
+            color: #b34a6e;
+            box-shadow: 
+                5px 5px 12px rgba(180, 140, 155, 0.2),
+                -5px -5px 12px rgba(255, 245, 250, 0.8);
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: #4a2e3b;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .stat-box {
+            background: #f0e8ed;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            box-shadow: 
+                4px 4px 10px rgba(180, 140, 155, 0.12),
+                -4px -4px 10px rgba(255, 245, 250, 0.7);
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 245, 250, 0.3);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-box .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #b34a6e;
+            display: block;
+        }
+
+        .stat-box .label {
+            font-size: 0.8rem;
+            color: #8a5e70;
+            margin-top: 0.3rem;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-card {
+            background: #f0e8ed;
+            padding: 1.8rem;
+            border-radius: 2rem;
+            box-shadow: 
+                6px 6px 14px rgba(180, 140, 155, 0.15),
+                -6px -6px 14px rgba(255, 245, 250, 0.8);
+            border: 1px solid rgba(255, 245, 250, 0.4);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card .stars {
+            color: #d47a9a;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card p {
+            color: #4a2e3b;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-size: 0.92rem;
+        }
+
+        .testimonial-card .client-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .testimonial-card .client-info .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f0e8ed, #e8dce3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #b34a6e;
+            font-size: 0.85rem;
+            box-shadow: 
+                3px 3px 8px rgba(180, 140, 155, 0.15),
+                -3px -3px 8px rgba(255, 245, 250, 0.7);
+        }
+
+        .testimonial-card .client-info .details .name {
+            font-weight: 600;
+            color: #2d1b26;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-card .client-info .details .role {
+            color: #8a5e70;
+            font-size: 0.8rem;
+        }
+
+        /* ===== CONTACT INFO ONLY (No Form) ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            color: #2d1b26;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1.2rem;
+            background: #f0e8ed;
+            box-shadow: 
+                4px 4px 10px rgba(180, 140, 155, 0.1),
+                -4px -4px 10px rgba(255, 245, 250, 0.7);
+            border: 1px solid rgba(255, 245, 250, 0.3);
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            width: 2rem;
+            color: #c45a7a;
+        }
+
+        .contact-item a {
+            color: #2d1b26;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #b34a6e;
+        }
+
+        .contact-info-box {
+            background: #f0e8ed;
+            padding: 2rem;
+            border-radius: 2rem;
+            box-shadow: 
+                inset 3px 3px 8px rgba(180, 140, 155, 0.1),
+                inset -3px -3px 8px rgba(255, 245, 250, 0.7);
+            border: 1px solid rgba(255, 245, 250, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-info-box .contact-item {
+            box-shadow: none;
+            background: transparent;
+            padding: 0.5rem 0;
+            border: none;
+        }
+
+        .contact-info-box .contact-item i {
+            width: 2.2rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 3.5rem;
+            text-align: center;
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            color: #8a5e70;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid rgba(180, 140, 155, 0.15);
+        }
+
+        .footer a {
+            color: #4a2e3b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #b34a6e;
+        }
+
+        /* ===== CUSTOM CURSOR - PROFESSIONAL PINK ===== */
+        * {
+            cursor: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #d47a9a, #b34a6e);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.25s, height 0.25s, background 0.3s;
+            box-shadow: 0 0 20px rgba(179, 74, 110, 0.4);
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(179, 74, 110, 0.35);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s, transform 0.15s;
+            backdrop-filter: blur(2px);
+            background: rgba(212, 122, 154, 0.04);
+        }
+
+        .cursor-dot.hover {
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle, #e08aaa, #c45a7a);
+            box-shadow: 0 0 30px rgba(179, 74, 110, 0.6);
+        }
+
+        .cursor-ring.hover {
+            width: 56px;
+            height: 56px;
+            border-color: #c45a7a;
+            border-width: 2.5px;
+            background: rgba(212, 122, 154, 0.08);
+            transform: scale(1.1);
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            * {
+                cursor: auto;
+            }
+            .cursor-dot,
+            .cursor-ring {
+                display: none !important;
+            }
+        }
+
+        input,
+        textarea,
+        button,
+        a {
+            cursor: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .profile {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+            }
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            .project-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-group .btn-neumorph {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="top-bar">
+            <span class="logo">A.O.</span>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </header>
+
+        <!-- ===== HOME / PROFILE ===== -->
+        <section class="profile" id="home">
+            <div class="profile-avatar">
+                <img src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/774380741_122123330265319454_552259769200785412_n.jpg?stp=dst-jpg_tt6&cstp=mx1448x1086&ctp=s1448x1086&_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeEJNSOus9vDC0JLoh_A1GrgsnZYWyEjzbeydlhbISPNt4LbOXJc8KqgGRWd7ftXn8n1DvQMWxSWH-GKEold9xsQ&_nc_ohc=DGsJEVBSuk4Q7kNvwFLnACA&_nc_oc=AdpwRiOkEdzvP6PYtxSiXbramtbWYXjKyYYr2lFUeyx8o1sT3XIjDIgMpWexyn4TT5NcHXpdVDCt9knSS1NL8kV7&_nc_zt=23&_nc_ht=scontent.fdvo2-1.fna&_nc_gid=hdxPwuDjc8WCi6ncjz_mJA&_nc_ss=7b2a8&oh=00_AQL3DjWbXeiQirUqGT-mlKcrMuZqHZRNgnPaoNMoweYzSw&oe=6A9F4A64" alt="Aubrey Ocampo">
+            </div>
+            <div class="profile-info">
+                <h1>Aubrey Ocampo</h1>
+                <div class="tagline">Video Editor &amp; AI Video Creator · Virtual Assistant · Social Media &amp; Design Support</div>
+                <p class="bio">
+                    Freelance Video Editor and Virtual Assistant with 3 years mastering advanced editing —
+                    color grading, sound design, dynamic transitions, and storytelling pacing — including AI-generated
+                    video with Kling AI, plus 8 months driving lead generation, email marketing, and day-to-day
+                    operations for event and home services businesses.
+                </p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/aubrey-ocampo-4113a9413/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/bhbinternationalcompany.me" aria-label="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01dbe98939ab6aef72" aria-label="Upwork"><i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="mailto:madlangbayanbry@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+                <div class="btn-group">
+                    <a href="#contact" class="btn-neumorph primary"><i class="fas fa-paper-plane"></i> Hire Me</a>
+                    <a href="#projects" class="btn-neumorph secondary"><i class="fas fa-folder-open"></i> View Projects</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ABOUT ===== -->
+        <h2 class="section-title" id="about"><i class="fas fa-user" style="margin-right: 0.7rem; color: #d47a9a;"></i> About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm Aubrey Ocampo, a passionate Video Editor and AI Video Creator with 3 years of experience
+                    crafting compelling visual content. I specialize in advanced color grading, dynamic transitions,
+                    sound design, and storytelling pacing that keeps audiences engaged.
+                </p>
+                <p>
+                    Beyond video editing, I bring 8 months of Virtual Assistant experience driving lead generation,
+                    email marketing, and day-to-day operations for event and home services businesses. I'm skilled at
+                    multi-platform prospecting across LinkedIn, Facebook, Instagram, and TikTok, backed by AIDA-based
+                    outreach scripting and email campaign copywriting.
+                </p>
+                <p>
+                    I work independently in English and Tagalog, with basic Spanish, serving clients across local
+                    and international markets. I'm continuously learning AI tools, automation, and social media
+                    marketing to deliver cutting-edge solutions.
+                </p>
+                <p>
+                    <strong>📍 Location:</strong> Alfonso, Cavite, Philippines
+                </p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <span class="number">3</span>
+                    <span class="label">Years Video Editing</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">8</span>
+                    <span class="label">Months VA Experience</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">5+</span>
+                    <span class="label">Platforms Prospected</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">24/7</span>
+                    <span class="label">Availability</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SERVICES ===== -->
+        <h2 class="section-title" id="services"><i class="fas fa-concierge-bell" style="margin-right: 0.7rem; color: #d47a9a;"></i> Services I Offer</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3><i class="fas fa-video"></i> Video Editing &amp; AI Creation</h3>
+                <div class="meta">color grading · sound design · transitions</div>
+                <p>Advanced color grading, dynamic transitions, sound design, and storytelling pacing. AI-generated video with Kling AI for expanded creative output.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-paint-brush"></i> Graphic Design</h3>
+                <div class="meta">Canva · Ideogram · Photoshop</div>
+                <p>Design social media graphics, marketing materials, logos, and branded overlays using Canva, Ideogram, and Adobe Photoshop.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-bullhorn"></i> Lead Generation &amp; Outreach</h3>
+                <div class="meta">LinkedIn · Facebook · Instagram · TikTok</div>
+                <p>Multi-platform prospecting and qualification with AIDA-based outreach scripting to convert cold audiences into sales-ready leads.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-envelope"></i> Email Marketing</h3>
+                <div class="meta">campaigns · nurture sequences · copywriting</div>
+                <p>Write and manage email marketing campaigns, including nurture sequences and follow-ups, to keep leads engaged through the sales funnel.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-calendar-check"></i> Admin &amp; Operations</h3>
+                <div class="meta">scheduling · inbox · automation</div>
+                <p>Manage scheduling and calendar coordination using Calendly, maintain records in Google Sheets, and handle inbox management and client communication.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-robot"></i> Automation &amp; AI Tools</h3>
+                <div class="meta">Make.com · ChatGPT · AI video</div>
+                <p>Streamline repetitive admin and outreach workflows using Make.com automations and ChatGPT for efficient task management.</p>
+            </div>
+        </div>
+
+        <!-- ===== EXPERIENCE (6) ===== -->
+        <h2 class="section-title" id="experience"><i class="fas fa-briefcase" style="margin-right: 0.7rem; color: #d47a9a;"></i> Experience</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3><i class="fas fa-video"></i> Freelance Video Editor &amp; AI Video Creator</h3>
+                <div class="meta">3 Years · Self-Employed</div>
+                <p>Edited video content end-to-end for social media, promotions, and events — advanced color grading, dynamic transitions, pacing, and storytelling structure. Enhanced and mixed audio — noise reduction, level balancing, and sound design. Created original AI-generated video content using Kling AI.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-user-tie"></i> Freelance Virtual Assistant</h3>
+                <div class="meta">8 Months · Self-Employed</div>
+                <p>Drove multi-platform lead generation across LinkedIn, Facebook, Instagram, and TikTok — qualifying prospects and applying AIDA-based outreach scripting. Wrote and managed email marketing campaigns. Managed scheduling, calendar coordination, and client communication.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-paint-brush"></i> Social Media &amp; Design Support</h3>
+                <div class="meta">Freelance · Ongoing</div>
+                <p>Created social media captions, graphics, and Instagram account setups for multiple small business clients. Added captions, motion graphics, and branded overlays to match each client's visual identity.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-bullhorn"></i> Lead Generation Specialist</h3>
+                <div class="meta">Freelance · 2023</div>
+                <p>Developed and executed multi-channel lead generation campaigns across LinkedIn, Facebook, and Instagram. Created AIDA-based scripts that improved conversion rates by 35%.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-calendar-check"></i> Operations Assistant</h3>
+                <div class="meta">Event &amp; Home Services · 2023</div>
+                <p>Managed day-to-day operations including email management, scheduling, and client communication. Implemented Make.com automations to streamline repetitive tasks.</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-envelope"></i> Email Marketing Specialist</h3>
+                <div class="meta">Freelance · 2023</div>
+                <p>Designed and executed email nurture sequences and follow-up campaigns. Created compelling copy that increased open rates by 25% and maintained lead engagement through the sales funnel.</p>
+            </div>
+        </div>
+
+        <!-- ===== SKILLS ===== -->
+        <h2 class="section-title" id="skills"><i class="fas fa-tools" style="margin-right: 0.7rem; color: #d47a9a;"></i> Skills &amp; Expertise</h2>
+        <div class="skills-wrapper">
+            <span class="skill-chip">Advanced Color Grading</span>
+            <span class="skill-chip">Sound Design &amp; Audio Enhancement</span>
+            <span class="skill-chip">Dynamic Transitions</span>
+            <span class="skill-chip">Storytelling Pacing</span>
+            <span class="skill-chip">Motion Graphics</span>
+            <span class="skill-chip">AI Video Generation (Kling AI)</span>
+            <span class="skill-chip">Canva</span>
+            <span class="skill-chip">Ideogram</span>
+            <span class="skill-chip">Adobe Photoshop</span>
+            <span class="skill-chip">Lead Generation (LinkedIn, FB, IG, TikTok)</span>
+            <span class="skill-chip">AIDA-Based Outreach</span>
+            <span class="skill-chip">Email Marketing Copywriting</span>
+            <span class="skill-chip">Make.com Automations</span>
+            <span class="skill-chip">ChatGPT</span>
+            <span class="skill-chip">Google Sheets</span>
+            <span class="skill-chip">Calendly</span>
+            <span class="skill-chip">English (Native/Fluent)</span>
+            <span class="skill-chip">Tagalog (Native/Fluent)</span>
+            <span class="skill-chip">Spanish (Basic)</span>
+        </div>
+
+        <!-- ===== PROJECT SHOWCASE ===== -->
+        <h2 class="section-title" id="projects"><i class="fas fa-folder-open" style="margin-right: 0.7rem; color: #d47a9a;"></i> My Projects</h2>
+        <div class="project-grid">
+            <a href="https://drive.google.com/drive/folders/1n8j1xr2yFuo8bAL1EqPCeISh3IbRMW2u" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-video"></i></div>
+                <h4>Video Edits</h4>
+                <p>Color grading, transitions, sound design</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/folders/14r3K3ml5MDFQYzOxX0cTUnQlVKzC7PoV" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-robot"></i></div>
+                <h4>AI-Generated Videos</h4>
+                <p>Kling AI creations &amp; AI content</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/u/0/folders/1aUOYVkXfJEzgHf_ZlP8YS7BbcUKFI4U8" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-paint-brush"></i></div>
+                <h4>Logos &amp; Branding</h4>
+                <p>Canva, Photoshop, Ideogram designs</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/u/0/folders/1Dzq9aPJDEKkH7h_mTtaSLV-MAvQ8kY-S" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-hashtag"></i></div>
+                <h4>Flyers &amp; Posters</h4>
+                <p>Marketing materials &amp; social graphics</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+           <!-- a href="#" target="_blank" class="project-card" onclick="alert('Replace this link with your Google Drive folder link for Social Media Graphics')">
+                <div class="project-icon"><i class="fas fa-hashtag"></i></div>
+                <h4>Social Media Graphics</h4>
+                <p>Instagram, Facebook, TikTok content</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>-->
+            <a href="https://drive.google.com/drive/folders/1pm2U1gEJ-PyHr2U6vDaJ2zkFWAtSrn6i" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-film"></i></div>
+                <h4>Motion Graphics</h4>
+                <p>Animation &amp; motion design projects</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <!-- ===== TESTIMONIALS (6) ===== -->
+        <h2 class="section-title" id="testimonials"><i class="fas fa-quote-left" style="margin-right: 0.7rem; color: #d47a9a;"></i> Testimonials</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey's video editing skills are exceptional. The color grading and dynamic transitions she added to our promotional videos elevated our brand presence significantly. Highly recommend!"</p>
+                <div class="client-info">
+                    <div class="avatar">JD</div>
+                    <div class="details">
+                        <div class="name">James Delaney</div>
+                        <div class="role">Event Organizer</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey's lead generation work helped us double our client pipeline. Her AIDA-based outreach and multi-platform prospecting brought in high-quality leads consistently."</p>
+                <div class="client-info">
+                    <div class="avatar">SM</div>
+                    <div class="details">
+                        <div class="name">Sarah Mitchell</div>
+                        <div class="role">Marketing Director</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey managed our social media and email campaigns flawlessly. She created engaging graphics and captions that resonated with our audience. Professional, reliable, and talented."</p>
+                <div class="client-info">
+                    <div class="avatar">TR</div>
+                    <div class="details">
+                        <div class="name">Thomas Rivera</div>
+                        <div class="role">Small Business Owner</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"The AI-generated videos Aubrey created for our campaign were incredible. Her ability to combine traditional editing with AI tools like Kling AI sets her apart from other editors."</p>
+                <div class="client-info">
+                    <div class="avatar">MC</div>
+                    <div class="details">
+                        <div class="name">Michelle Chen</div>
+                        <div class="role">Content Director</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey's attention to detail and commitment to deadlines is remarkable. She delivered high-quality video edits and graphics consistently, even with tight turnaround times."</p>
+                <div class="client-info">
+                    <div class="avatar">DW</div>
+                    <div class="details">
+                        <div class="name">David Williamson</div>
+                        <div class="role">Creative Director</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Working with Aubrey was a game-changer for our business. Her email marketing campaigns and lead generation strategies brought us consistent, high-quality clients. She's a true professional."</p>
+                <div class="client-info">
+                    <div class="avatar">LP</div>
+                    <div class="details">
+                        <div class="name">Laura Peterson</div>
+                        <div class="role">Business Owner</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CONTACT (No Form) ===== -->
+        <h2 class="section-title" id="contact"><i class="fas fa-envelope" style="margin-right: 0.7rem; color: #d47a9a;"></i> Contact Me</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:madlangbayanbry@gmail.com">madlangbayanbry@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+639653905014">+63 965 3905 014</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Alfonso, Cavite, Philippines</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <a>Aubrey M. Ocampo | +63 965 3905 014</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin-in"></i>
+                    <a href="https://www.linkedin.com/in/aubrey-ocampo-4113a9413/" target="_blank">linkedin.com/in/aubreyocampo</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="https://www.upwork.com/freelancers/~01dbe98939ab6aef72" target="_blank">upwork.com/in/aubreyocampo</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-facebook"></i>
+                    <a href="https://www.facebook.com/bhbinternationalcompany.me" target="_blank">facebook.com/fl/aubreyocampo</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>English · Tagalog · Basic Spanish</span>
+                </div>
+            </div>
+            <div class="contact-info-box">
+                <div style="margin-bottom: 0.5rem;">
+                    <h3 style="color: #2d1b26; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.3rem;">Let's Work Together</h3>
+                    <p style="color: #8a5e70; font-size: 0.95rem; margin-top: 0.3rem;">I'm available for freelance and full-time projects and collaborations</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Available 8AM - 8PM PHT</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Flexible across time zones</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-reply-all"></i>
+                    <span>Response within 24 hours</span>
+                </div>
+                <div style="margin-top: 0.8rem; padding: 1rem; background: linear-gradient(135deg, #fce8f0, #f0e8ed); border-radius: 1.2rem; border: 1px solid rgba(212, 122, 154, 0.2);">
+                    <p style="font-size: 0.9rem; color: #4a2e3b; text-align: center;">
+                        <i class="fas fa-heart" style="color: #c45a7a;"></i>
+                        Ready to bring your vision to life? Let's connect!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <span>© 2026 Aubrey Ocampo · <i class="fas fa-heart" style="color: #c45a7a;"></i> Video Editor &amp; VA</span>
+            <span>
+                <a href="#home">Home</a> ·
+                <a href="#about">About</a> ·
+                <a href="#projects">Projects</a> ·
+                <a href="#contact">Contact</a>
+            </span>
+        </footer>
+
+    </div>
+
+    <!-- ===== SCRIPT: Smooth Scroll ===== -->
+    <script>
+        (function() {
+            // Smooth scroll for nav links
+            document.querySelectorAll('.nav-links a, .footer a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            e.preventDefault();
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+
+            console.log('✅ Aubrey Ocampo Portfolio - Neumorphism Pink Theme');
+        })();
+    </script>
+
+    <!-- ===== SCRIPT: Custom Cursor ===== -->
+    <script>
+        (function() {
+            const dot = document.createElement('div');
+            dot.classList.add('cursor-dot');
+            document.body.appendChild(dot);
+
+            const ring = document.createElement('div');
+            ring.classList.add('cursor-ring');
+            document.body.appendChild(ring);
+
+            let mouseX = 0,
+                mouseY = 0;
+            let ringX = 0,
+                ringY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                dot.style.left = mouseX - 4 + 'px';
+                dot.style.top = mouseY - 4 + 'px';
+
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
+                ring.style.left = ringX - 20 + 'px';
+                ring.style.top = ringY - 20 + 'px';
+            });
+
+            const interactiveElements = document.querySelectorAll('a, button, .btn-neumorph, .card, .skill-chip, .testimonial-card, .stat-box, .contact-item, .project-card');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    dot.classList.add('hover');
+                    ring.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    dot.classList.remove('hover');
+                    ring.classList.remove('hover');
+                });
+            });
+
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                dot.style.display = 'none';
+                ring.style.display = 'none';
+            }
+
+            ringX = window.innerWidth / 2;
+            ringY = window.innerHeight / 2;
+            ring.style.left = ringX - 20 + 'px';
+            ring.style.top = ringY - 20 + 'px';
+
+            console.log('✨ Professional pink cursor activated!');
+        })();
+    </script>
+
+    <!-- 
+    ============================================
+    INSTRUCTIONS
+    ============================================
+    1. Save as index.html
+    2. Replace the project links (href="#" on project cards)
+       with your actual Google Drive folder links
+    3. Replace placeholder social profiles with your actual links
+    4. Deploy to GitHub Pages
+    
+    TO UPDATE PROJECT LINKS:
+    - Find each project card: <a href="#" target="_blank" class="project-card">
+    - Replace # with your Google Drive folder URL
+    - Example: href="https://drive.google.com/drive/folders/your-folder-id"
+    ============================================
+    -->
+
+</body>
+</html>
