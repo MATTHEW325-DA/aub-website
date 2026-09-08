@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aubrey Ocampo · Virtual Assistant</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #FF8A9D;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #FFC0CB;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== NEUMORPHISM CONTAINER ===== */
+        .container {
+            max-width: 1150px;
+            width: 100%;
+            margin: 0 auto;
+            background: #FFE6EA;
+            border-radius: 3rem;
+            padding: 2.8rem 3rem;
+            box-shadow: 
+                12px 12px 24px rgba(180, 140, 155, 0.25),
+                -12px -12px 24px rgba(255, 138, 157);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 245, 250, 0.5);
+        }
+
+        /* ===== HEADER ===== */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(180, 140, 155, 0.15);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b34a6e, #d47a9a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 500;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a2e3b;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.3rem 0;
+        }
+
+        .nav-links a:hover {
+            color: #c45a7a;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d47a9a;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== PROFILE ===== */
+        .profile {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2.8rem;
+            margin-bottom: 3rem;
+            padding: 0.5rem 0;
+        }
+
+        .profile-avatar {
+            flex-shrink: 0;
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f0e8ed;
+            box-shadow: 
+                8px 8px 16px rgba(180, 140, 155, 0.2),
+                -8px -8px 16px rgba(255, 245, 250, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(255, 245, 250, 0.6);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-avatar i {
+            font-size: 4rem;
+            color: #b34a6e;
+        }
+
+        .profile-info h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #2d1b26;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .profile-info .tagline {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #b34a6e;
+            margin-bottom: 0.4rem;
+        }
+
+        .profile-info .bio {
+            max-width: 550px;
+            color: #4a2e3b;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 0.4rem;
+        }
+
+        .social-icons a {
+            color: #4a2e3b;
+            font-size: 1.4rem;
+            transition: all 0.3s;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0e8ed;
+            box-shadow: 
+                4px 4px 8px rgba(180, 140, 155, 0.15),
+                -4px -4px 8px rgba(255, 245, 250, 0.8);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #c45a7a;
+            transform: translateY(-3px);
+            box-shadow: 
+                6px 6px 12px rgba(180, 140, 155, 0.2),
+                -6px -6px 12px rgba(255, 245, 250, 0.9);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+        }
+
+        /* ===== NEUMORPHISM BUTTONS ===== */
+        .btn-neumorph {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            background: #f0e8ed;
+            color: #4a2e3b;
+            box-shadow: 
+                6px 6px 12px rgba(180, 140, 155, 0.2),
+                -6px -6px 12px rgba(255, 245, 250, 0.8);
+        }
+
+        .btn-neumorph:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                8px 8px 16px rgba(180, 140, 155, 0.25),
+                -8px -8px 16px rgba(255, 245, 250, 0.9);
+        }
+
+        .btn-neumorph.primary {
+            background: linear-gradient(135deg, #d47a9a, #b34a6e);
+            color: white;
+            box-shadow: 
+                6px 6px 12px rgba(180, 140, 155, 0.25),
+                -6px -6px 12px rgba(255, 245, 250, 0.6);
+        }
+
+        .btn-neumorph.primary:hover {
+            box-shadow: 
+                8px 8px 16px rgba(180, 140, 155, 0.3),
+                -8px -8px 16px rgba(255, 245, 250, 0.7);
+            transform: translateY(-3px);
+        }
+
+        .btn-neumorph.secondary {
+            background: transparent;
+            border: 2px solid #d47a9a;
+            color: #b34a6e;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin: 3rem 0 1.5rem 0;
+            letter-spacing: -0.01em;
+            padding-left: 1.2rem;
+            border-left: 5px solid #d47a9a;
+            color: #2d1b26;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: #8a5e70;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== NEUMORPHISM CARDS ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .card {
+            background: #f0e8ed;
+            border-radius: 2rem;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 
+                6px 6px 14px rgba(180, 140, 155, 0.15),
+                -6px -6px 14px rgba(255, 245, 250, 0.8);
+            border: 1px solid rgba(255, 245, 250, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 
+                10px 10px 20px rgba(180, 140, 155, 0.2),
+                -10px -10px 20px rgba(255, 245, 250, 0.9);
+        }
+
+        .card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #2d1b26;
+        }
+
+        .card .meta {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #8a5e70;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #4a2e3b;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        .card i {
+            color: #c45a7a;
+            width: 1.8rem;
+            font-size: 1.1rem;
+        }
+
+        .card .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .card .tools-list .tool-tag {
+            background: rgba(212, 122, 154, 0.1);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #b34a6e;
+            border: 1px solid rgba(212, 122, 154, 0.2);
+        }
+
+        .card .why-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d47a9a, #b34a6e);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .skill-chip {
+            background: #f0e8ed;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #4a2e3b;
+            transition: all 0.3s;
+            box-shadow: 
+                3px 3px 8px rgba(180, 140, 155, 0.12),
+                -3px -3px 8px rgba(255, 245, 250, 0.7);
+            border: 1px solid rgba(255, 245, 250, 0.3);
+        }
+
+        .skill-chip:hover {
+            transform: translateY(-2px);
+            color: #b34a6e;
+            box-shadow: 
+                5px 5px 12px rgba(180, 140, 155, 0.2),
+                -5px -5px 12px rgba(255, 245, 250, 0.8);
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: #4a2e3b;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .stat-box {
+            background: #f0e8ed;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            box-shadow: 
+                4px 4px 10px rgba(180, 140, 155, 0.12),
+                -4px -4px 10px rgba(255, 245, 250, 0.7);
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 245, 250, 0.3);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-box .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #b34a6e;
+            display: block;
+        }
+
+        .stat-box .label {
+            font-size: 0.8rem;
+            color: #8a5e70;
+            margin-top: 0.3rem;
+        }
+
+        /* ===== PROJECT SHOWCASE ===== */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .project-card {
+            background: #f0e8ed;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 
+                6px 6px 14px rgba(180, 140, 155, 0.15),
+                -6px -6px 14px rgba(255, 245, 250, 0.8);
+            border: 1px solid rgba(255, 245, 250, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #4a2e3b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 
+                10px 10px 20px rgba(180, 140, 155, 0.2),
+                -10px -10px 20px rgba(255, 245, 250, 0.9);
+            color: #b34a6e;
+        }
+
+        .project-card .project-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f0e8ed, #e8dce3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #b34a6e;
+            box-shadow: 
+                4px 4px 10px rgba(180, 140, 155, 0.15),
+                -4px -4px 10px rgba(255, 245, 250, 0.7);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .project-icon {
+            background: linear-gradient(135deg, #d47a9a, #b34a6e);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .project-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2d1b26;
+        }
+
+        .project-card p {
+            font-size: 0.85rem;
+            color: #8a5e70;
+            margin: 0;
+        }
+
+        .project-card .arrow-link {
+            font-size: 1.2rem;
+            color: #d47a9a;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover .arrow-link {
+            transform: translateX(5px);
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-card {
+            background: #f0e8ed;
+            padding: 1.8rem;
+            border-radius: 2rem;
+            box-shadow: 
+                6px 6px 14px rgba(180, 140, 155, 0.15),
+                -6px -6px 14px rgba(255, 245, 250, 0.8);
+            border: 1px solid rgba(255, 245, 250, 0.4);
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .testimonial-card .stars {
+            color: #d47a9a;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card p {
+            color: #4a2e3b;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-size: 0.92rem;
+        }
+
+        .testimonial-card .client-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .testimonial-card .client-info .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f0e8ed, #e8dce3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #b34a6e;
+            font-size: 0.85rem;
+            box-shadow: 
+                3px 3px 8px rgba(180, 140, 155, 0.15),
+                -3px -3px 8px rgba(255, 245, 250, 0.7);
+        }
+
+        .testimonial-card .client-info .details .name {
+            font-weight: 600;
+            color: #2d1b26;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-card .client-info .details .role {
+            color: #8a5e70;
+            font-size: 0.8rem;
+        }
+
+        /* ===== TRUST BADGES ===== */
+        .trust-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            padding: 1.5rem;
+            background: #f0e8ed;
+            border-radius: 2rem;
+            box-shadow: 
+                inset 3px 3px 8px rgba(180, 140, 155, 0.1),
+                inset -3px -3px 8px rgba(255, 245, 250, 0.7);
+            margin-top: 1rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #4a2e3b;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .trust-badge i {
+            color: #b34a6e;
+            font-size: 1.2rem;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            color: #2d1b26;
+            padding: 0.8rem 1.2rem;
+            border-radius: 1.2rem;
+            background: #f0e8ed;
+            box-shadow: 
+                4px 4px 10px rgba(180, 140, 155, 0.1),
+                -4px -4px 10px rgba(255, 245, 250, 0.7);
+            border: 1px solid rgba(255, 245, 250, 0.3);
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            width: 2rem;
+            color: #c45a7a;
+        }
+
+        .contact-item a {
+            color: #2d1b26;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #b34a6e;
+        }
+
+        .contact-info-box {
+            background: #f0e8ed;
+            padding: 2rem;
+            border-radius: 2rem;
+            box-shadow: 
+                inset 3px 3px 8px rgba(180, 140, 155, 0.1),
+                inset -3px -3px 8px rgba(255, 245, 250, 0.7);
+            border: 1px solid rgba(255, 245, 250, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-info-box .contact-item {
+            box-shadow: none;
+            background: transparent;
+            padding: 0.5rem 0;
+            border: none;
+        }
+
+        .contact-info-box .contact-item i {
+            width: 2.2rem;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 3.5rem;
+            text-align: center;
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            color: #8a5e70;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid rgba(180, 140, 155, 0.15);
+        }
+
+        .footer a {
+            color: #4a2e3b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #b34a6e;
+        }
+
+        /* ===== CUSTOM CURSOR ===== */
+        * {
+            cursor: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #d47a9a, #b34a6e);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.25s, height 0.25s, background 0.3s;
+            box-shadow: 0 0 20px rgba(179, 74, 110, 0.4);
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(179, 74, 110, 0.35);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s, transform 0.15s;
+            backdrop-filter: blur(2px);
+            background: rgba(212, 122, 154, 0.04);
+        }
+
+        .cursor-dot.hover {
+            width: 14px;
+            height: 14px;
+            background: radial-gradient(circle, #e08aaa, #c45a7a);
+            box-shadow: 0 0 30px rgba(179, 74, 110, 0.6);
+        }
+
+        .cursor-ring.hover {
+            width: 56px;
+            height: 56px;
+            border-color: #c45a7a;
+            border-width: 2.5px;
+            background: rgba(212, 122, 154, 0.08);
+            transform: scale(1.1);
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            * {
+                cursor: auto;
+            }
+            .cursor-dot,
+            .cursor-ring {
+                display: none !important;
+            }
+        }
+
+        input,
+        textarea,
+        button,
+        a {
+            cursor: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 2rem 1.5rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .profile {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+            }
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .trust-badges {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            .project-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-group .btn-neumorph {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="top-bar">
+            <span class="logo">A.O.</span>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </header>
+
+        <!-- ===== HOME / PROFILE ===== -->
+        <section class="profile" id="home">
+            <div class="profile-avatar">
+                <img src="https://scontent.fdvo2-1.fna.fbcdn.net/v/t39.30808-6/774380741_122123330265319454_552259769200785412_n.jpg?stp=dst-jpg_tt6&cstp=mx1448x1086&ctp=s1448x1086&_nc_cat=101&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeEJNSOus9vDC0JLoh_A1GrgsnZYWyEjzbeydlhbISPNt4LbOXJc8KqgGRWd7ftXn8n1DvQMWxSWH-GKEold9xsQ&_nc_ohc=NJ-96KOIGsYQ7kNvwEWz2-f&_nc_oc=AdpI3pVvuq2RUqttZ_nEk38a3T-U4jXi0150P7lO8RUuk2YeSJofzf4AZAwHaWhRetJl9ly8k1Q22qKZMg6j8zv7&_nc_zt=23&_nc_ht=scontent.fdvo2-1.fna&_nc_gid=qOoSk1rj5bFmdbsoK06Tuw&_nc_ss=7b2a8&oh=00_AQJeK9ZvWYcCNr7F4ITOfuT6WGg6qsjiCJh7zRQ-_MuTFw&oe=6AA5E1E4" alt="Aubrey Ocampo">
+            </div>
+            <div class="profile-info">
+                <h1>Aubrey Ocampo</h1>
+                <div class="tagline">Virtual Assistant · Customer Support · Lead Generation · Social Media &amp; Content · Email Marketing</div>
+                <p class="bio">
+                    I help businesses scale with reliable, results-driven virtual support. From managing customer
+                    support tickets to generating qualified leads, creating engaging content, and optimizing email
+                    campaigns — I deliver professional support that builds trust and drives growth.
+                </p>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/aubrey-ocampo-4113a9413/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/bhbinternationalcompany.me" aria-label="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01dbe98939ab6aef72" aria-label="Upwork"><i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="mailto:madlangbayanbry@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+                <div class="btn-group">
+                    <a href="#services" class="btn-neumorph primary"><i class="fas fa-briefcase"></i> View Services</a>
+                    <a href="#contact" class="btn-neumorph secondary"><i class="fas fa-paper-plane"></i> Hire Me</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TRUST BADGES ===== -->
+        <div class="trust-badges">
+            <span class="trust-badge"><i class="fas fa-clock"></i> 24/7 Support Availability</span>
+            <span class="trust-badge"><i class="fas fa-check-circle"></i> 50+ Projects Completed</span>
+            <span class="trust-badge"><i class="fas fa-user-check"></i> 30+ Satisfied Clients</span>
+            <span class="trust-badge"><i class="fas fa-globe"></i> Global Time Zone Flexibility</span>
+        </div>
+
+        <!-- ===== ABOUT ===== -->
+        <h2 class="section-title" id="about"><i class="fas fa-user" style="margin-right: 0.7rem; color: #d47a9a;"></i> About Me</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm Aubrey Ocampo, a dedicated Virtual Assistant with expertise in customer support,
+                    lead generation, social media management, and email marketing. I help businesses streamline
+                    operations, build customer trust, and generate consistent growth through reliable virtual support.
+                </p>
+                <p>
+                    With experience across multiple tools and platforms, I bring a professional, results-driven
+                    approach to every project. I understand that businesses need dependable support they can trust —
+                    and I deliver exactly that.
+                </p>
+                <p>
+                    <strong>📍 Location:</strong> Alfonso, Cavite, Philippines
+                </p>
+                <p>
+                    <strong>⏰ Availability:</strong> 24/7 Support · Flexible across time zones
+                </p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <span class="number">30+</span>
+                    <span class="label">Clients Served</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">50+</span>
+                    <span class="label">Projects Completed</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">24/7</span>
+                    <span class="label">Availability</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">100%</span>
+                    <span class="label">Satisfaction Rate</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== SERVICES ===== -->
+        <h2 class="section-title" id="services"><i class="fas fa-concierge-bell" style="margin-right: 0.7rem; color: #d47a9a;"></i> My Services</h2>
+        <p class="section-subtitle">Professional virtual support designed to help your business scale and build trust</p>
+
+        <div class="card-grid">
+            <!-- Service 1: Customer Support / Community VA -->
+            <div class="card">
+                <h3><i class="fas fa-headset"></i> Customer Support / Community VA</h3>
+                <div class="meta">Support that builds trust</div>
+                <p>Email/chat support, ticket triage, refunds, FAQ management, community moderation. I provide reliable, professional support that keeps your customers happy and your brand trusted.</p>
+                <div class="tools-list">
+                    <span class="tool-tag">Zendesk</span>
+                    <span class="tool-tag">Gorgias</span>
+                    <span class="tool-tag">Intercom</span>
+                    <span class="tool-tag">Slack</span>
+                    <span class="tool-tag">Discord</span>
+                </div>
+                <span class="why-badge"><i class="fas fa-star"></i> Why: Support never goes away, and companies prefer remote VAs over full-time hires for off-hours coverage.</span>
+            </div>
+
+            <!-- Service 2: Social Media & Content VA -->
+            <div class="card">
+                <h3><i class="fas fa-hashtag"></i> Social Media &amp; Content VA</h3>
+                <div class="meta">Consistent content that engages</div>
+                <p>Content creation, scheduling, engagement, short-form video editing, captions, basic analytics. I keep your brand visible and engaging across all platforms.</p>
+                <div class="tools-list">
+                    <span class="tool-tag">Canva</span>
+                    <span class="tool-tag">CapCut</span>
+                    <span class="tool-tag">Later</span>
+                    <span class="tool-tag">Buffer</span>
+                    <span class="tool-tag">Meta Business Suite</span>
+                </div>
+                <span class="why-badge"><i class="fas fa-star"></i> Why: Businesses want consistent content but don't need a full social media manager.</span>
+            </div>
+
+            <!-- Service 3: Lead Generation / Sales Support VA -->
+            <div class="card">
+                <h3><i class="fas fa-bullhorn"></i> Lead Generation / Sales Support VA</h3>
+                <div class="meta">Fuel your sales pipeline</div>
+                <p>Prospect research, list building, cold email/LinkedIn outreach, CRM updates, appointment setting support. I help B2B companies, agencies, and coaches build a consistent pipeline.</p>
+                <div class="tools-list">
+                    <span class="tool-tag">Apollo</span>
+                    <span class="tool-tag">LinkedIn Sales Navigator</span>
+                    <span class="tool-tag">Instantly</span>
+                    <span class="tool-tag">HubSpot</span>
+                </div>
+                <span class="why-badge"><i class="fas fa-star"></i> Why: B2B companies, agencies, and coaches constantly need pipeline help.</span>
+            </div>
+
+            <!-- Service 4: Email Marketing / Klaviyo VA -->
+            <div class="card">
+                <h3><i class="fas fa-envelope"></i> Email Marketing / Klaviyo VA</h3>
+                <div class="meta">Automated email that converts</div>
+                <p>Email campaign setup, flows, segmentation, A/B testing, copywriting, list management. I build and manage email systems that nurture leads and drive sales.</p>
+                <div class="tools-list">
+                    <span class="tool-tag">Klaviyo</span>
+                    <span class="tool-tag">Mailchimp</span>
+                    <span class="tool-tag">ConvertKit</span>
+                    <span class="tool-tag">ActiveCampaign</span>
+                </div>
+                <span class="why-badge"><i class="fas fa-star"></i> Why: Email marketing delivers the highest ROI, but businesses don't have time to manage it.</span>
+            </div>
+        </div>
+
+        <!-- ===== SKILLS ===== -->
+        <h2 class="section-title" id="skills"><i class="fas fa-tools" style="margin-right: 0.7rem; color: #d47a9a;"></i> Tools &amp; Platforms</h2>
+        <div class="skills-wrapper">
+            <!-- Support Tools -->
+            <span class="skill-chip">Zendesk</span>
+            <span class="skill-chip">Gorgias</span>
+            <span class="skill-chip">Intercom</span>
+            <span class="skill-chip">Slack</span>
+            <span class="skill-chip">Discord</span>
+            <!-- Social Media Tools -->
+            <span class="skill-chip">Canva</span>
+            <span class="skill-chip">CapCut</span>
+            <span class="skill-chip">Later</span>
+            <span class="skill-chip">Buffer</span>
+            <span class="skill-chip">Meta Business Suite</span>
+            <!-- Lead Gen Tools -->
+            <span class="skill-chip">Apollo</span>
+            <span class="skill-chip">LinkedIn Sales Navigator</span>
+            <span class="skill-chip">Instantly</span>
+            <span class="skill-chip">HubSpot</span>
+            <!-- Email Tools -->
+            <span class="skill-chip">Klaviyo</span>
+            <span class="skill-chip">Mailchimp</span>
+            <span class="skill-chip">ConvertKit</span>
+            <span class="skill-chip">ActiveCampaign</span>
+            <!-- General -->
+            <span class="skill-chip">Google Workspace</span>
+            <span class="skill-chip">Microsoft 365</span>
+            <span class="skill-chip">Make.com</span>
+            <span class="skill-chip">ChatGPT</span>
+            <span class="skill-chip">Calendly</span>
+            <span class="skill-chip">Zapier</span>
+        </div>
+
+        <!-- ===== PROJECT SHOWCASE ===== -->
+        <h2 class="section-title" id="projects"><i class="fas fa-folder-open" style="margin-right: 0.7rem; color: #d47a9a;"></i> Portfolio Showcase</h2>
+        <div class="project-grid">
+            <a href="#" target="_blank" class="project-card" onclick="alert('Replace this link with your Google Drive folder link for Customer Support Projects')">
+                <div class="project-icon"><i class="fas fa-headset"></i></div>
+                <h4>Customer Support</h4>
+                <p>Email/chat, ticket triage, FAQ management</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <!--<a href="#" target="_blank" class="project-card" onclick="alert('Replace this link with your Google Drive folder link for Social Media Projects')">
+                <div class="project-icon"><i class="fas fa-hashtag"></i></div>
+                <h4>Social Media &amp; Content</h4>
+                <p>Graphics, captions, scheduling, video editing</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>--->
+            <a href="#" target="_blank" class="project-card" onclick="alert('Replace this link with your Google Drive folder link for Lead Gen Projects')">
+                <div class="project-icon"><i class="fas fa-bullhorn"></i></div>
+                <h4>Lead Generation</h4>
+                <p>Prospecting, outreach, CRM management</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="#" target="_blank" class="project-card" onclick="alert('Replace this link with your Google Drive folder link for Email Marketing Projects')">
+                <div class="project-icon"><i class="fas fa-envelope"></i></div>
+                <h4>Email Marketing</h4>
+                <p>Campaigns, flows, automations, copywriting</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1pm2U1gEJ-PyHr2U6vDaJ2zkFWAtSrn6i" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-film"></i></div>
+                <h4>Motion Graphics</h4>
+                <p>Animation &amp; motion design projects</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/u/0/folders/1Dzq9aPJDEKkH7h_mTtaSLV-MAvQ8kY-S" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fa fa-folder" aria-hidden="true"></i></div>
+                <h4>Flyers &amp; Posters</h4>
+                <p>Marketing materials &amp; social graphics</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/u/0/folders/1aUOYVkXfJEzgHf_ZlP8YS7BbcUKFI4U8" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-paint-brush"></i></div>
+                <h4>Logos &amp; Branding</h4>
+                <p>Canva, Photoshop, Ideogram designs</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/folders/14r3K3ml5MDFQYzOxX0cTUnQlVKzC7PoV" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-robot"></i></div>
+                <h4>AI-Generated Videos</h4>
+                <p>Kling AI creations &amp; AI content</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://drive.google.com/drive/folders/1n8j1xr2yFuo8bAL1EqPCeISh3IbRMW2u" target="_blank" class="project-card">
+                <div class="project-icon"><i class="fas fa-video"></i></div>
+                <h4>Video Edits</h4>
+                <p>Color grading, transitions, sound design</p>
+                <span class="arrow-link"><i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+
+        <!-- ===== TESTIMONIALS ===== -->
+        <h2 class="section-title" id="testimonials"><i class="fas fa-quote-left" style="margin-right: 0.7rem; color: #d47a9a;"></i> What Clients Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey has been a lifesaver for our customer support. She handles tickets professionally, responds quickly, and our CSAT scores have improved significantly. Highly recommend!"</p>
+                <div class="client-info">
+                    <div class="avatar">JD</div>
+                    <div class="details">
+                        <div class="name">James Delaney</div>
+                        <div class="role">Customer Support Lead</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey's lead generation work helped us build a strong sales pipeline. Her LinkedIn outreach and prospect research are top-notch. She's an asset to any B2B team."</p>
+                <div class="client-info">
+                    <div class="avatar">SM</div>
+                    <div class="details">
+                        <div class="name">Sarah Mitchell</div>
+                        <div class="role">Sales Director</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey manages our social media and it's been amazing. Consistent content, great engagement, and she really understands our brand voice. She's like part of the team."</p>
+                <div class="client-info">
+                    <div class="avatar">TR</div>
+                    <div class="details">
+                        <div class="name">Thomas Rivera</div>
+                        <div class="role">Marketing Manager</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Our email marketing has never performed better. Aubrey set up our Klaviyo flows and they've been generating consistent revenue. She's incredibly knowledgeable and reliable."</p>
+                <div class="client-info">
+                    <div class="avatar">MC</div>
+                    <div class="details">
+                        <div class="name">Michelle Chen</div>
+                        <div class="role">E-commerce Owner</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Aubrey is the most reliable VA I've worked with. Her community management skills are excellent and she handles our Discord and Slack with professionalism. Highly recommend her services."</p>
+                <div class="client-info">
+                    <div class="avatar">DW</div>
+                    <div class="details">
+                        <div class="name">David Williamson</div>
+                        <div class="role">Community Manager</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Working with Aubrey has been a game-changer. She handles our lead generation and email outreach seamlessly. Her attention to detail and proactive approach make her stand out."</p>
+                <div class="client-info">
+                    <div class="avatar">LP</div>
+                    <div class="details">
+                        <div class="name">Laura Peterson</div>
+                        <div class="role">CEO, Startup</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CONTACT ===== -->
+        <h2 class="section-title" id="contact"><i class="fas fa-envelope" style="margin-right: 0.7rem; color: #d47a9a;"></i> Contact Me</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:madlangbayanbry@gmail.com">madlangbayanbry@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <a href="tel:+639653905014">+63 965 3905 014</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Alfonso, Cavite, Philippines</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    <a>Aubrey M. Ocampo | +63 965 3905 014</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin-in"></i>
+                    <a href="https://www.linkedin.com/in/aubrey-ocampo-4113a9413/" target="_blank">linkedin.com/in/aubreyocampo</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="https://www.upwork.com/freelancers/~01dbe98939ab6aef72" target="_blank">upwork.com/in/aubreyocampo</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-facebook"></i>
+                    <a href="https://www.facebook.com/bhbinternationalcompany.me" target="_blank">facebook.com/fl/aubreyocampo</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>English · Tagalog · Basic Spanish</span>
+                </div>
+            </div>
+            <div class="contact-info-box">
+                <div style="margin-bottom: 0.5rem;">
+                    <h3 style="color: #2d1b26; font-family: 'Playfair Display', serif; font-weight: 600; font-size: 1.3rem;">Ready to Scale Your Business?</h3>
+                    <p style="color: #8a5e70; font-size: 0.95rem; margin-top: 0.3rem;">Let's discuss how I can help your team grow with reliable virtual support</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>24/7 Support Available</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Flexible across all time zones</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-reply-all"></i>
+                    <span>Response within 24 hours</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>100% satisfaction guaranteed</span>
+                </div>
+                <div style="margin-top: 0.8rem; padding: 1rem; background: linear-gradient(135deg, #fce8f0, #f0e8ed); border-radius: 1.2rem; border: 1px solid rgba(212, 122, 154, 0.2);">
+                    <p style="font-size: 0.9rem; color: #4a2e3b; text-align: center;">
+                        <i class="fas fa-heart" style="color: #c45a7a;"></i>
+                        Let's build something amazing together.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <span>© 2026 Aubrey Ocampo · <i class="fas fa-heart" style="color: #c45a7a;"></i> Virtual Assistant</span>
+            <span>
+                <a href="#home">Home</a> ·
+                <a href="#services">Services</a> ·
+                <a href="#contact">Contact</a>
+            </span>
+        </footer>
+
+    </div>
+
+    <!-- ===== SCRIPT: Smooth Scroll ===== -->
+    <script>
+        (function() {
+            document.querySelectorAll('.nav-links a, .footer a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            e.preventDefault();
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+            console.log('✅ Aubrey Ocampo VA Portfolio - Professional Services Focus');
+        })();
+    </script>
+
+    <!-- ===== SCRIPT: Custom Cursor ===== -->
+    <script>
+        (function() {
+            const dot = document.createElement('div');
+            dot.classList.add('cursor-dot');
+            document.body.appendChild(dot);
+
+            const ring = document.createElement('div');
+            ring.classList.add('cursor-ring');
+            document.body.appendChild(ring);
+
+            let mouseX = 0,
+                mouseY = 0;
+            let ringX = 0,
+                ringY = 0;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                dot.style.left = mouseX - 4 + 'px';
+                dot.style.top = mouseY - 4 + 'px';
+
+                ringX += (mouseX - ringX) * 0.15;
+                ringY += (mouseY - ringY) * 0.15;
+                ring.style.left = ringX - 20 + 'px';
+                ring.style.top = ringY - 20 + 'px';
+            });
+
+            const interactiveElements = document.querySelectorAll('a, button, .btn-neumorph, .card, .skill-chip, .testimonial-card, .stat-box, .contact-item, .project-card');
+
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    dot.classList.add('hover');
+                    ring.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    dot.classList.remove('hover');
+                    ring.classList.remove('hover');
+                });
+            });
+
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                dot.style.display = 'none';
+                ring.style.display = 'none';
+            }
+
+            ringX = window.innerWidth / 2;
+            ringY = window.innerHeight / 2;
+            ring.style.left = ringX - 20 + 'px';
+            ring.style.top = ringY - 20 + 'px';
+
+            console.log('✨ Professional pink cursor activated!');
+        })();
+    </script>
+
+</body>
+</html>
