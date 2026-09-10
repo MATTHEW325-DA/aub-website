@@ -943,66 +943,6 @@
             width: 2.2rem;
         }
 
-        /* ===== CONTACT FORM ===== */
-        .contact-form-section {
-            background: #f0e8ed;
-            padding: 2.5rem;
-            border-radius: 2rem;
-            box-shadow: 
-                6px 6px 14px rgba(180, 140, 155, 0.15),
-                -6px -6px 14px rgba(255, 245, 250, 0.8);
-            border: 1px solid rgba(255, 245, 250, 0.4);
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.2rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #2d1b26;
-            margin-bottom: 0.4rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.9rem 1.2rem;
-            border: none;
-            border-radius: 60px;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.95rem;
-            background: #f0e8ed;
-            color: #2d1b26;
-            box-shadow: 
-                inset 3px 3px 8px rgba(180, 140, 155, 0.12),
-                inset -3px -3px 8px rgba(255, 245, 250, 0.7);
-            transition: all 0.3s;
-        }
-
-        .form-group textarea {
-            border-radius: 1.5rem;
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            box-shadow: 
-                inset 4px 4px 12px rgba(180, 140, 155, 0.2),
-                inset -4px -4px 12px rgba(255, 245, 250, 0.8);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #b8a0aa;
-        }
-
         /* ===== FOOTER ===== */
         .footer {
             margin-top: 3.5rem;
@@ -1183,9 +1123,6 @@
                 gap: 1rem;
                 flex-direction: column;
                 align-items: center;
-            }
-            .contact-form-section {
-                padding: 1.5rem;
             }
         }
 
@@ -1615,49 +1552,6 @@
             </div>
         </div>
 
-        <!-- ===== CONTACT FORM ===== -->
-        <div class="contact-form-section">
-            <h3 style="text-align: center; margin-bottom: 0.5rem; font-family: 'Poppins', sans-serif; color: #2d1b26; font-size: 1.3rem;">
-                <i class="fas fa-paper-plane" style="color: #d47a9a;"></i> Send Me a Message
-            </h3>
-            <p style="text-align: center; color: #8a5e70; font-size: 0.9rem; margin-bottom: 1.5rem; font-family: 'Quicksand', sans-serif;">
-                Have a project in mind? Fill out the form below and I'll reply within 24 hours.
-            </p>
-
-            <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                <!-- Your Access Key -->
-                <input type="hidden" name="access_key" value="YOUR-ACCESS-KEY-HERE">
-
-                <!-- Email Settings -->
-                <input type="hidden" name="subject" value="New Message from Aubrey Ocampo Portfolio">
-                <input type="hidden" name="from_name" value="Aubrey Ocampo Portfolio">
-                <input type="hidden" name="replyto" value="email">
-
-                <!-- Form Fields -->
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="e.g. John Smith" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" name="email" placeholder="e.g. john@company.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" placeholder="Tell me about your project or what you need help with..." required></textarea>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn-neumorph primary" style="width: 100%; justify-content: center;">
-                    <i class="fas fa-paper-plane"></i> Send Message
-                </button>
-            </form>
-
-            <div id="formResult" style="margin-top: 1rem; text-align: center; font-family: 'Quicksand', sans-serif; font-weight: 600;"></div>
-        </div>
-
         <!-- ===== FOOTER ===== -->
         <footer class="footer">
             <span>© 2026 Aubrey Ocampo · <i class="fas fa-heart" style="color: #c45a7a;"></i> Virtual Assistant</span>
@@ -1920,11 +1814,13 @@
             });
 
             function animateCursor() {
+                // Dot follows quickly
                 dotX += (mouseX - dotX) * 0.35;
                 dotY += (mouseY - dotY) * 0.35;
                 dot.style.left = dotX - 4 + 'px';
                 dot.style.top = dotY - 4 + 'px';
 
+                // Ring follows slower
                 ringX += (mouseX - ringX) * 0.12;
                 ringY += (mouseY - ringY) * 0.12;
                 ring.style.left = ringX - 20 + 'px';
@@ -1934,8 +1830,9 @@
             }
             animateCursor();
 
+            // Hover effects
             const interactiveEls = document.querySelectorAll(
-                'a, button, .btn-neumorph, .card, .skill-chip, .testimonial-card, .stat-box, .contact-item, .project-card, .social-icons a, input, textarea'
+                'a, button, .btn-neumorph, .card, .skill-chip, .testimonial-card, .stat-box, .contact-item, .project-card, .social-icons a'
             );
 
             interactiveEls.forEach((el) => {
@@ -1949,6 +1846,7 @@
                 });
             });
 
+            // Hide on touch devices
             if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
                 dot.style.display = 'none';
                 ring.style.display = 'none';
@@ -1982,9 +1880,6 @@
                12. SPARKLE EFFECT ON CLICK
                ============================================================ */
             document.addEventListener('click', (e) => {
-                // Don't sparkle on form inputs
-                if (e.target.matches('input, textarea, button[type="submit"]')) return;
-
                 const sparkleEmojis = ['✨', '⭐', '🌟', '💫', '✧', '✦', '♥', '✿', '🌸', '💕'];
                 const colors = ['#d4729a', '#ff6b9d', '#f5a0c0', '#b34a6e', '#ff8fab', '#ffb3c6'];
 
@@ -2030,73 +1925,7 @@
             });
 
             /* ============================================================
-               14. CONTACT FORM SUBMISSION
-               ============================================================ */
-            const contactForm = document.getElementById('contactForm');
-            const formResult = document.getElementById('formResult');
-
-            if (contactForm) {
-                contactForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-
-                    const formData = new FormData(contactForm);
-                    const submitBtn = contactForm.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.innerHTML;
-
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                    submitBtn.disabled = true;
-                    formResult.innerHTML = '';
-
-                    try {
-                        const response = await fetch(contactForm.action, {
-                            method: 'POST',
-                            body: formData
-                        });
-
-                        const result = await response.json();
-
-                        if (result.success) {
-                            formResult.innerHTML = '<span style="color: #4CAF50;"><i class="fas fa-check-circle"></i> Message sent! I\'ll reply within 24 hours.</span>';
-                            contactForm.reset();
-
-                            // Sparkle celebration
-                            for (let i = 0; i < 15; i++) {
-                                setTimeout(() => {
-                                    const s = document.createElement('div');
-                                    s.textContent = ['✨', '⭐', '🌟', '💫', '💖'][Math.floor(Math.random() * 5)];
-                                    s.style.position = 'fixed';
-                                    s.style.pointerEvents = 'none';
-                                    s.style.zIndex = '99999';
-                                    s.style.fontSize = (15 + Math.random() * 15) + 'px';
-                                    s.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 300) + 'px';
-                                    s.style.top = (window.innerHeight / 2 + (Math.random() - 0.5) * 200) + 'px';
-                                    s.style.transition = 'all 1.2s ease-out';
-                                    document.body.appendChild(s);
-                                    requestAnimationFrame(() => {
-                                        s.style.transform = `translate(${(Math.random() - 0.5) * 200}px, -150px) scale(0)`;
-                                        s.style.opacity = '0';
-                                    });
-                                    setTimeout(() => s.remove(), 1300);
-                                }, i * 60);
-                            }
-                        } else {
-                            formResult.innerHTML = '<span style="color: #b34a6e;"><i class="fas fa-exclamation-circle"></i> Something went wrong. Please try again.</span>';
-                        }
-                    } catch (error) {
-                        formResult.innerHTML = '<span style="color: #b34a6e;"><i class="fas fa-exclamation-circle"></i> Network error. Please check your connection.</span>';
-                    }
-
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-
-                    setTimeout(() => {
-                        formResult.innerHTML = '';
-                    }, 8000);
-                });
-            }
-
-            /* ============================================================
-               15. CONSOLE BRANDING
+               14. CONSOLE BRANDING
                ============================================================ */
             console.log(
                 '%c✨ Aubrey Ocampo · Virtual Assistant',
@@ -2109,10 +1938,6 @@
             console.log(
                 '%c💼 Customer Support · Lead Generation · Social Media · Email Marketing',
                 'color: #d47a9a; font-size: 12px; font-family: Quicksand, sans-serif;'
-            );
-            console.log(
-                '%c📧 Contact form is ready — replace YOUR-ACCESS-KEY-HERE with your Web3Forms key',
-                'color: #4CAF50; font-size: 12px; font-family: Quicksand, sans-serif;'
             );
 
         })();
